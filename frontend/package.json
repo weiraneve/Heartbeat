@@ -8,6 +8,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "tauri": "tauri",
     "preview": "vite preview",
     "lint": "eslint -c .eslintrc.json ./ && prettier --check ./",
     "fix": "eslint -c .eslintrc.json --fix && npx prettier --write . --ignore-unknown",
@@ -44,6 +45,7 @@
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.5.9",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
