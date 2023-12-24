@@ -1,0 +1,42 @@
+[build]
+target = "aarch64-apple-darwin"
+
+[target.aarch64-linux-android]
+linker = "/Users/weiran.sun/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android24-clang"
+rustflags = [
+    "-L",
+    "/Users/weiran.sun/code/projects/my_HeartBeat/Heartbeat/frontend/src-tauri/.cargo",
+    "-Clink-arg=-landroid",
+    "-Clink-arg=-llog",
+    "-Clink-arg=-lOpenSLES",
+]
+
+[target.armv7-linux-androideabi]
+linker = "/Users/weiran.sun/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/armv7a-linux-androideabi24-clang"
+rustflags = [
+    "-L",
+    "/Users/weiran.sun/code/projects/my_HeartBeat/Heartbeat/frontend/src-tauri/.cargo",
+    "-Clink-arg=-landroid",
+    "-Clink-arg=-llog",
+    "-Clink-arg=-lOpenSLES",
+]
+
+[target.i686-linux-android]
+linker = "/Users/weiran.sun/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android24-clang"
+rustflags = [
+    "-L",
+    "/Users/weiran.sun/code/projects/my_HeartBeat/Heartbeat/frontend/src-tauri/.cargo",
+    "-Clink-arg=-landroid",
+    "-Clink-arg=-llog",
+    "-Clink-arg=-lOpenSLES",
+]
+
+[target.x86_64-linux-android]
+linker = "/Users/weiran.sun/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/x86_64-linux-android24-clang"
+rustflags = [
+    "-L",
+    "/Users/weiran.sun/code/projects/my_HeartBeat/Heartbeat/frontend/src-tauri/.cargo",
+    "-Clink-arg=-landroid",
+    "-Clink-arg=-llog",
+    "-Clink-arg=-lOpenSLES",
+]

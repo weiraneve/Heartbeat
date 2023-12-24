@@ -1,0 +1,8 @@
+[app]
+name = "heartbeat"
+stylized-name = "Heartbeat"
+domain = "com.thoughtworks.heartbeat"
+template-pack = "wry"
+
+[apple]
+development-team = "UTX7WMHYP9"

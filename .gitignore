@@ -51,3 +51,4 @@ csv
 # Stubby4j
 /stubs/logs
 gitleaks-report.json
+/frontend/src-tauri/target/

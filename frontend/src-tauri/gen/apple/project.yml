@@ -1,0 +1,93 @@
+name: heartbeat
+options:
+  bundleIdPrefix: heartbeat.thoughtworks.com
+  deploymentTarget:
+    iOS: 13.0
+    macOS: 11.0
+fileGroups: [../../src]
+configs:
+  debug: debug
+  release: release
+settingGroups:
+  app:
+    base:
+      PRODUCT_NAME: Heartbeat
+      PRODUCT_BUNDLE_IDENTIFIER: heartbeat.thoughtworks.com.heartbeat
+      DEVELOPMENT_TEAM: UTX7WMHYP9
+targetTemplates:
+  app:
+    type: application
+    sources:
+      - path: Sources
+    scheme:
+      environmentVariables:
+        RUST_BACKTRACE: full
+        RUST_LOG: info
+    settings:
+      groups: [app]
+targets:
+  heartbeat_iOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: assets
+        buildPhase: resources
+        type: folder
+      
+       
+    info:
+      path: heartbeat_iOS/Info.plist
+      properties:
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: LaunchScreen
+        UIRequiredDeviceCapabilities: [arm64, metal]
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        CFBundleShortVersionString: 1.0.0
+        CFBundleVersion: 1.0.0
+        
+    scheme:
+      environmentVariables:
+        RUST_BACKTRACE: full
+        RUST_LOG: info
+    settings:
+      base:
+        ENABLE_BITCODE: false
+        ARCHS: [arm64]
+        VALID_ARCHS:  arm64 
+        LIBRARY_SEARCH_PATHS[sdk=iphoneos*]: $(inherited) $(PROJECT_DIR)/Sources/aarch64-apple-ios/$(CONFIGURATION)
+        LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]: $(inherited) "/Users/weiran.sun/code/projects/my_HeartBeat/Heartbeat/frontend/src-tauri/target/aarch64-apple-ios-sim/$(CONFIGURATION)"
+        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: true
+      groups: [app]
+    dependencies:
+      - framework: libheartbeat.a
+        embed: false
+      
+      
+      
+      - sdk: CoreGraphics.framework
+      - sdk: Metal.framework
+      - sdk: MetalKit.framework
+      - sdk: QuartzCore.framework
+      - sdk: Security.framework
+      - sdk: UIKit.framework
+      
+      - sdk: WebKit.framework
+    preBuildScripts:
+      
+      - script: |-
+          CARGO_APPLE=`which cargo-apple`
+          ${CARGO_APPLE} xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths "${FRAMEWORK_SEARCH_PATHS:?}" --header-search-paths "${HEADER_SEARCH_PATHS:?}" --gcc-preprocessor-definitions "${GCC_PREPROCESSOR_DEFINITIONS:?}" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?} ${FEATURES}
+        name: Build Rust Code
+        basedOnDependencyAnalysis: false
+        outputFiles:
+          - $(SRCROOT)/target/aarch64-apple-ios/${CONFIGURATION}/deps/libheartbeat.a
+          - $(SRCROOT)/target/x86_64-apple-ios/${CONFIGURATION}/deps/libheartbeat.a
