@@ -1,12 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-mod menu;
+#![cfg_attr(
+all(not(debug_assertions), target_os = "windows"),
+windows_subsystem = "windows"
+)]
 
-fn main() {
-  tauri::Builder::default()
-    .menu(menu::init())
-    .on_menu_event(menu::menu_handler)
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+
+pub fn main() {
+  // Change demo_mobile_app to the name of your app!
+  heartbeat::AppBuilder::new().run();
 }
