@@ -2,12 +2,20 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path/posix'
 import { VitePWA } from 'vite-plugin-pwa'
+import { internalIpV4 } from 'internal-ip'
 
 export default defineConfig({
   server: {
     port: 4321,
+    host: '0.0.0.0',
     proxy: {
       '/api/v1': 'http://localhost:4322',
+    },
+    strictPort: true,
+    hmr: {
+      protocol: 'ws',
+      host: await internalIpV4(),
+      port: 4421,
     },
   },
   plugins: [

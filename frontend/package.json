@@ -4,6 +4,7 @@
   "author": "HeartBeat Team <heartbeat@thoughtworks.com>",
   "description": "HeartBeat is a tool for tracking project delivery metrics that can help you get a better understanding of delivery performance. This product allows you easily get all aspects of source data faster and more accurate to analyze team delivery performance which enables delivery teams and team leaders focusing on driving continuous improvement and enhancing team productivity and efficiency.",
   "private": false,
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
@@ -78,6 +79,7 @@
     "execa": "^8.0.1",
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
+    "internal-ip": "^8.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.5.0",
     "license-compliance": "^2.0.1",
