@@ -3,8 +3,9 @@ all(not(debug_assertions), target_os = "windows"),
 windows_subsystem = "windows"
 )]
 
+use app::AppBuilder;
 
 pub fn main() {
   // Change demo_mobile_app to the name of your app!
-  heartbeat::AppBuilder::new().run();
+  AppBuilder::new().run();
 }
